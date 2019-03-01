@@ -130,20 +130,20 @@ if (det < 0 && x > 0) {
 } else if (det < 0 && x < 0){
     reverseDet = -x;
 }
-console.log(det);
+
 matrix = AdjugateMatrix(matrix);
 for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix.length; j++) {
         matrix[i][j] = matrix[i][j] % alphabet.length;
     }
 }
-console.log(matrix);
+
 for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = matrix[i][j]*reverseDet;
     }
 }
-console.log(matrix);
+
 for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = matrix[i][j] % alphabet.length;

@@ -62,7 +62,6 @@ for (let i = 0; i < blocks.length; i++) {
 //     }
 //     newMatrix[j] = number;
 // }
-console.log(newMatrix);
 // взятие остатка от деления на длину алфавита ( матрицы mod длина алфавита)
 for (let i =0; i<newMatrix.length; i++){
     for (let j=0; j < newMatrix[i].length; j++){
