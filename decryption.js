@@ -82,7 +82,7 @@ console.log('Текст для расшифровки: ', text);
 console.log('Ключ для расшифровки: ', key);
 
 //кодирование данных
-let alphabet = 'abcdefghijklmnopqrstuvwxyz .,';
+let alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя., ?';
 console.log('Алфавит: ', alphabet);
 alphabet = alphabet.split('');
 text = text.split('');
@@ -100,7 +100,6 @@ for (let i = 0; i < matrixSize; i++) {
     }
     matrix[i] = matrixString;
 }
-
 // разбиение текста на блоки
 let blocks = [];
 for (let i = 0; text.length != 0; i++) {
@@ -111,13 +110,11 @@ for (let i = 0; text.length != 0; i++) {
         } else {
             blockNumber[j] = alphabet.lenght;
         }
-
     }
     blocks[i] = blockNumber;
 }
 
-matrix = [[0,12,29],[16,9,14],[9,8,13]];
-alphabet.length=37;
+
 
 // вычисление обратной матрицы 
 let det = Determinant(matrix);
@@ -133,26 +130,26 @@ if (det < 0 && x > 0) {
 } else if (det < 0 && x < 0){
     reverseDet = -x;
 }
-
+console.log(det);
 matrix = AdjugateMatrix(matrix);
 for (let i = 0; i < matrix.length; i++) {
-    for (let j = 0; j < matrix[i].length; j++) {
+    for (let j = 0; j < matrix.length; j++) {
         matrix[i][j] = matrix[i][j] % alphabet.length;
     }
 }
-
+console.log(matrix);
 for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = matrix[i][j]*reverseDet;
     }
 }
-
+console.log(matrix);
 for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
         matrix[i][j] = matrix[i][j] % alphabet.length;
     }
 }
-matrix = TransMatrix(matrix);
+// matrix = TransMatrix(matrix);
 for (let i = 0; i < matrix.length; i++) {
     for (let j = 0; j < matrix[i].length; j++) {
         if (matrix[i][j]<0){
@@ -166,26 +163,20 @@ for (let i = 0; i < blocks.length; i++) {
     let stringNewMatrix = [];
     for (let j = 0; j < matrixSize; j++) {
         let number = 0;
-        for (let k = 0; k < blocks[i].length; k++) {
-            number = blocks[i][j] * matrix[k][j] + number;
+        for (let k = 0; k < matrixSize; k++) {
+            number += blocks[i][k] * matrix[k][j];
         }
         stringNewMatrix[j] = number
     }
     newMatrix[i] = stringNewMatrix;
 }
 
-
-
-
-
-console.log(newMatrix);
 // взятие остатка от деления на длину алфавита ( матрицы mod длина алфавита)
 for (let i = 0; i < newMatrix.length; i++) {
     for (let j = 0; j < newMatrix[i].length; j++) {
         newMatrix[i][j] = newMatrix[i][j] % alphabet.length;
     }
 }
-
 // декодирование в текст
 for (let i = 0; i < newMatrix.length; i++) {
     for (let j = 0; j < newMatrix[i].length; j++) {

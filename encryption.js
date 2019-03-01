@@ -45,14 +45,23 @@ let newMatrix = [];
 for (let i = 0; i < blocks.length; i++) {
     let stringNewMatrix = [];
     for (let j = 0; j < matrixSize; j++) {
-        let number = 0;
-        for (let k = 0; k < blocks[i].length; k++) {
-            number = blocks[i][j] * matrix[k][j] + number;
-        }
+    let number = 0;
+    for (let k = 0; k < matrixSize; k++) {
+        number += blocks[i][k] * matrix[k][j];
+    }
         stringNewMatrix[j] = number
     }
     newMatrix[i] = stringNewMatrix;
 }
+// console.log(matrix);
+// for (let j = 0; j < matrixSize; j++) {
+//     let number = 0;
+//     for (let k = 0; k < matrixSize; k++) {
+//         number += blocks[i][k] * matrix[k][j];
+//         console.log(blocks[i][k],'*',matrix[k][j],'=',number);
+//     }
+//     newMatrix[j] = number;
+// }
 console.log(newMatrix);
 // взятие остатка от деления на длину алфавита ( матрицы mod длина алфавита)
 for (let i =0; i<newMatrix.length; i++){
